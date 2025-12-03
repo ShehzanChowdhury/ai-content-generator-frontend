@@ -6,6 +6,7 @@
 - [b. Setup Instructions](#b-setup-instructions)
 - [c. API Documentation](#c-api-documentation)
 - [d. Architectural Decisions](#d-architectural-decisions)
+- [e. Live Deployment](#e-live-deployment)
 
 ## a. Project Overview and Tech Stack Used
 
@@ -64,8 +65,8 @@ frontend/
 
 1. **Clone the git repository and navigate to frontend directory:**
    ```bash
-   git clone <repository-url>
-   cd ai-content/frontend
+   git clone https://github.com/ShehzanChowdhury/ai-content-generator-frontend.git
+   cd ai-content-generator-frontend
    ```
 
 2. **Install dependencies:**
@@ -156,3 +157,15 @@ All API requests are handled through the centralized API client (`src/lib/api.ts
 9. **Centralized API Client**: Single API client instance with configured interceptors handles all HTTP requests, providing consistent error handling and authentication across the application.
 
 10. **Optimistic UI Updates**: Redux state updates immediately reflect user actions while API calls are in progress, providing instant feedback and better perceived performance.
+
+## e. Live Deployment
+
+### Deployed Applications
+- **Backend API:** [https://ai-content-generator-backend-k1r8.onrender.com/](https://ai-content-generator-backend-k1r8.onrender.com/)
+- **Frontend Application:** [https://shehzan-ai-content-generate.netlify.app/](https://shehzan-ai-content-generate.netlify.app/)
+
+The frontend application is deployed on [Netlify](https://www.netlify.com/). The application is configured to connect to the production backend API.
+
+### GitHub Repositories
+- **Backend Repository:** [https://github.com/ShehzanChowdhury/ai-content-generator-backend](https://github.com/ShehzanChowdhury/ai-content-generator-backend)
+- **Frontend Repository:** [https://github.com/ShehzanChowdhury/ai-content-generator-frontend](https://github.com/ShehzanChowdhury/ai-content-generator-frontend)

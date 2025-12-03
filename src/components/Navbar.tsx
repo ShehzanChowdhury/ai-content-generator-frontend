@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { logoutUser } from '../store/authSlice';
 import Drawer from './ui/Drawer';
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -23,24 +24,14 @@ export default function Navbar() {
     return null;
   }
 
-  const NavLinks = () => (
-    <>
-      <Link
-        href="/dashboard"
-        onClick={() => setIsDrawerOpen(false)}
-        className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium block"
-      >
-        Dashboard
-      </Link>
-      <Link
-        href="/create"
-        onClick={() => setIsDrawerOpen(false)}
-        className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium block"
-      >
-        Create Content
-      </Link>
-    </>
-  );
+  const isActive = (path: string) => pathname === path;
+  
+  const navLinkClassName = (path: string) =>
+    `px-3 py-2 rounded-md text-sm font-medium block transition-colors ${
+      isActive(path)
+        ? 'bg-indigo-100 text-indigo-700 font-semibold'
+        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+    }`;
 
   return (
     <>
@@ -78,7 +69,20 @@ export default function Navbar() {
 
               {/* Desktop navigation links */}
               <div className="hidden md:flex space-x-4">
-                <NavLinks />
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsDrawerOpen(false)}
+                  className={navLinkClassName('/dashboard')}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/create"
+                  onClick={() => setIsDrawerOpen(false)}
+                  className={navLinkClassName('/create')}
+                >
+                  Create Content
+                </Link>
               </div>
             </div>
 
@@ -111,7 +115,20 @@ export default function Navbar() {
             <p className="text-lg font-semibold text-gray-900">{user?.name}</p>
           </div>
           <nav className="space-y-2">
-            <NavLinks />
+            <Link
+              href="/dashboard"
+              onClick={() => setIsDrawerOpen(false)}
+              className={navLinkClassName('/dashboard')}
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/create"
+              onClick={() => setIsDrawerOpen(false)}
+              className={navLinkClassName('/create')}
+            >
+              Create Content
+            </Link>
           </nav>
           <div className="pt-4 border-t border-gray-200">
             <button

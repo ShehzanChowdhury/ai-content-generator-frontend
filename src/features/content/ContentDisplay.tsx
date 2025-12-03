@@ -116,7 +116,7 @@ export default function ContentDisplay({
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-gray-900">Content</h2>
           {!isEditing && (
-            <Button variant="ghost" size="sm" onClick={handleEdit}>
+            <Button variant="secondary" size="sm" onClick={handleEdit}>
               Edit
             </Button>
           )}

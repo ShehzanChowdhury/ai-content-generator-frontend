@@ -85,6 +85,12 @@ export default function ContentTable({ contents, onDelete }: ContentTableProps) 
                 <div className="text-sm font-medium text-gray-900 truncate">
                   {content.topic}
                 </div>
+                <div className="mt-2 flex items-center space-x-3">
+                  <StatusBadge status={content.jobStatus} size="sm" />
+                  <div className="text-xs text-gray-500">
+                    {formatDateShort(content.createdAt)}
+                  </div>
+                </div>
               </div>
               <div className="ml-4 flex items-center space-x-2 shrink-0">
                 <button

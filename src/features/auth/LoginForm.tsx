@@ -31,7 +31,6 @@ export default function LoginForm() {
       [e.target.name]: e.target.value,
     });
     setValidationError('');
-    clearAuthError();
   };
 
   const validateForm = () => {
@@ -60,6 +59,7 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setValidationError('');
     clearAuthError();
 
@@ -73,9 +73,8 @@ export default function LoginForm() {
       } else {
         await register(formData.name, formData.email, formData.password);
       }
-      router.push('/dashboard');
     } catch {
-      // Error is handled by Redux
+      // Error is handled by Redux and will be displayed in the Modal
     }
   };
 

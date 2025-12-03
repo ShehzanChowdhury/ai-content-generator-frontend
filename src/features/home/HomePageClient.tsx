@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '../../store/hooks';
 import HomePage from './HomePage';
+import LoadingSpinner from '../../components/ui/LoadingSpinner';
 
 export default function HomePageClient() {
   const router = useRouter();
@@ -15,9 +16,16 @@ export default function HomePageClient() {
     }
   }, [isAuthenticated, router]);
 
-  // Don't render anything if still loading or if authenticated (redirecting)
+  // Show loading screen while checking auth or redirecting
   if (isLoading || isAuthenticated) {
-    return null;
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <LoadingSpinner size="lg" />
+          <div className="mt-4 text-gray-600">Loading...</div>
+        </div>
+      </div>
+    );
   }
 
   return <HomePage />;
